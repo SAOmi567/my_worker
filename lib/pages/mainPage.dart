@@ -15,7 +15,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      body: Column(
 
+      ),
     );
   }
 
