@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text("登录"),
                     color: Colors.orange,
                     onPressed: (){
-                      Navigator.of(context).pushNamed("routes/mainPage");
+                      Navigator.of(context).pushNamedAndRemoveUntil("routes/main", ModalRoute.withName("/"));
                     },
                   )
                 ],

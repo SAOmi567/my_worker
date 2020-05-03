@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_worker/pages/loginPage.dart';
-import 'package:my_worker/pages/mainPage.dart';
+import 'package:flutter/services.dart';
+import 'package:my_worker/pages/CustomerDetailPage.dart';
+import 'package:my_worker/pages/LoginPage.dart';
+import 'package:my_worker/pages/MainPage.dart';
 
 
 void main() {
   runApp(MyApp());
+  SystemChrome.setEnabledSystemUIOverlays([]); // 隐藏系统状态栏（全屏）
 }
 
 class MyApp extends StatelessWidget {
@@ -12,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -27,7 +31,8 @@ class MyApp extends StatelessWidget {
       ),
       home: LoginPage(),
       routes: <String, WidgetBuilder> {
-        "routes/mainPage":(_) => new MainPage()
+        "routes/main":(_) => new MainPage(),
+        "routes/customerDetail": (_) => new CustomerDetailPage()
       },
     );
   }
