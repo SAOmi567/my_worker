@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.contacts),
+              leading: Icon(Icons.home),
               title: Text("首页"),
               onTap: () {
                 setState(() {
@@ -59,17 +59,24 @@ class _MainPageState extends State<MainPage> {
                 });
               },
             ),
-            ListTile(
+            ExpansionTile(
+              title: Text("会员中心"),
               leading: Icon(Icons.contacts),
-              title: Text("客户"),
-              onTap: () {
-                setState(() {
-                  _curPage = 1;
-                  _pageTitle = "客户";
-                  Navigator.pop(context);
-                });
-              },
-            )
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(Icons.search),
+                  title: Text("快速查询"),
+                  onTap: () {
+                    setState(() {
+                      _curPage = 1;
+                      _pageTitle = "会员中心 > 快速查询";
+                      Navigator.pop(context);
+                    });
+                  },
+                )
+              ],
+            ),
+
           ],
         ),
       ),

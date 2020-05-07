@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_worker/coms/searchBar/CustomerSearchBar.dart';
 
 class CustomerPage extends StatefulWidget{
   @override
@@ -41,36 +42,41 @@ class _CustomerPageState extends State<CustomerPage> {
     ));
     // TODO: implement build
     return Scaffold(
-      body: Container(
-        child: DataTable(
-          columns: [
-            DataColumn(
-              label: Text("姓名")
+      body: ListView(
+        children: <Widget>[
+          CustomerSearchBar(),
+          Container(
+            child: DataTable(
+              columns: [
+                DataColumn(
+                    label: Text("姓名")
+                ),
+                DataColumn(
+                    label: Text("卡号")
+                ),
+                DataColumn(
+                    label: Text("等级")
+                ),
+                DataColumn(
+                    label: Text("余额")
+                ),
+                DataColumn(
+                    label: Text("积分")
+                ),
+                DataColumn(
+                    label: Text("关联平台账号")
+                ),
+                DataColumn(
+                    label: Text("创建时间")
+                ),
+                DataColumn(
+                    label: Text("操作")
+                )
+              ],
+              rows: _result,
             ),
-            DataColumn(
-                label: Text("卡号")
-            ),
-            DataColumn(
-                label: Text("等级")
-            ),
-            DataColumn(
-                label: Text("余额")
-            ),
-            DataColumn(
-                label: Text("积分")
-            ),
-            DataColumn(
-                label: Text("关联平台账号")
-            ),
-            DataColumn(
-                label: Text("创建时间")
-            ),
-            DataColumn(
-                label: Text("操作")
-            )
-          ],
-          rows: _result,
-        ),
+          )
+        ],
       )
     );
   }
