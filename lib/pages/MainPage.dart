@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_worker/pages/CustomerPage.dart';
@@ -26,9 +28,9 @@ class _MainPageState extends State<MainPage> {
     // TODO: implement build
     return Scaffold(
       appBar: _isShowAppBar? AppBar(
-        backgroundColor: Colors.pinkAccent,
-        title: Text(_pageTitle),
-      ) : null,
+          backgroundColor: Colors.pinkAccent,
+          title: Text(_pageTitle),
+        ): null,
       body: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onLongPress: () {
