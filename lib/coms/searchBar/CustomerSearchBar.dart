@@ -12,6 +12,7 @@ class CustomerSearchBar extends StatefulWidget {
 
 class _CustomerSearchBarState extends State<CustomerSearchBar> {
   bool _isSuper = false;
+  String _level = "全部";
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,7 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Container(
-                      child: Text("手机号", style: TextStyle(fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                      width: 300,
+                      width: 700,
                       child: TextField(
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -41,7 +39,9 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
                             ),
                           hintText: "请输入手机号",
                           isDense: true,
-                          contentPadding: EdgeInsets.all(10)
+                          contentPadding: EdgeInsets.all(10),
+                          filled: true,
+                          fillColor: Colors.white
                         ),
                       ),
                     )
@@ -70,18 +70,85 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
             ),
           ),
           // 超级查询
-          SizedBox(
-            height: _isSuper ? 100 : 0,
-            child: Container(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-              child: Row(
-                children: <Widget>[
-                  Text("kkk")
-                ],
+          Offstage(
+            offstage: !_isSuper,
+            child: SizedBox(
+              height: 200,
+              child: Card(
+                child: Table(
+                  children: [
+                    TableRow(
+                      children: [
+                        TableCell(
+                          child: Text("姓名"),
+                        ),
+                        TableCell(
+                          child: Container(
+                              width: 100,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: "姓名",
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.all(10),
+                                ),
+                              )
+                          ),
+                        ),
+                        TableCell(
+                          child: Text("等级"),
+                        ),
+                        TableCell(
+                          child: DropdownButton(
+                            value: _level,
+                            items: [
+                              DropdownMenuItem(child: Text("全部"), value: "全部"),
+                              DropdownMenuItem(child: Text("SSS"), value: "SSS"),
+                              DropdownMenuItem(child: Text("A"), value: "A")
+                            ],
+                            onChanged: (value) {
+                            },
+                          ),
+                        )
+                      ]
+                    ),
+                    TableRow(
+                        children: [
+                          TableCell(
+                            child: Text("姓名"),
+                          ),
+                          TableCell(
+                            child: Text("姓名"),
+                          ),
+                          TableCell(
+                            child: Text("姓名"),
+                          ),
+                          TableCell(
+                            child: Text("姓名"),
+                          )
+                        ]
+                    ),
+                    TableRow(
+                      children: [
+                        TableCell(
+                          child: Text("姓名"),
+                        ),
+                        TableCell(
+                          child: Text("姓名"),
+                        ),
+                        TableCell(
+                          child: Text("姓名"),
+                        ),
+                        TableCell(
+                          child: Text("姓名"),
+                        )
+                      ]
+                    )
+                  ],
+                ),
               ),
             ),
           )
-
         ],
       ),
     );
