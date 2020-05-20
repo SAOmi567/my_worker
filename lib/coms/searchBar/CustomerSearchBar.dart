@@ -31,12 +31,16 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Container(
-                      width: 700,
+                      width: 500,
                       child: TextField(
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(Radius.circular(20))
                             ),
+                          icon: Icon(
+                            Icons.search,
+                            color: Colors.white
+                          ),
                           hintText: "请输入手机号",
                           isDense: true,
                           contentPadding: EdgeInsets.all(10),
@@ -59,6 +63,11 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
                         });
                       },
                     ),
+                    FlatButton(
+                      onPressed: () {
+                      },
+                      child: Text("重置"),
+                    ),
                     RaisedButton(
                       onPressed: () {
                       },
@@ -76,19 +85,31 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
               height: 200,
               child: Card(
                 child: Table(
+                  columnWidths: <int,TableColumnWidth>{
+                    0:FixedColumnWidth(80),
+                    1:FixedColumnWidth(200),
+                    2:FixedColumnWidth(80),
+                    3:FixedColumnWidth(200),
+                    4:FixedColumnWidth(80)
+                  },
                   children: [
                     TableRow(
                       children: [
                         TableCell(
-                          child: Text("姓名"),
+                          verticalAlignment: TableCellVerticalAlignment.middle,
+                          child: Text("姓名：",
+                              textAlign: TextAlign.right,
+                              style: TextStyle(fontWeight: FontWeight.bold)
+                          ),
                         ),
                         TableCell(
+                          verticalAlignment: TableCellVerticalAlignment.middle,
                           child: Container(
                               width: 100,
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                  labelText: "姓名",
+                                  hintText: "请输入姓名",
                                   isDense: true,
                                   contentPadding: EdgeInsets.all(10),
                                 ),
@@ -96,9 +117,14 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
                           ),
                         ),
                         TableCell(
-                          child: Text("等级"),
+                          verticalAlignment: TableCellVerticalAlignment.middle,
+                          child: Text("等级：",
+                              textAlign: TextAlign.right,
+                              style: TextStyle(fontWeight: FontWeight.bold)
+                          ),
                         ),
                         TableCell(
+                          verticalAlignment: TableCellVerticalAlignment.middle,
                           child: DropdownButton(
                             value: _level,
                             items: [
@@ -109,40 +135,116 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
                             onChanged: (value) {
                             },
                           ),
-                        )
+                        ),
+                        TableCell(
+                          verticalAlignment: TableCellVerticalAlignment.middle,
+                          child: Text("卡号：",
+                              textAlign: TextAlign.right,
+                              style: TextStyle(fontWeight: FontWeight.bold)
+                          ),
+                        ),
+                        TableCell(
+                          verticalAlignment: TableCellVerticalAlignment.middle,
+                          child: Container(
+                              width: 100,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: "请输入卡号",
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.all(10),
+                                ),
+                              )
+                          ),
+                        ),
                       ]
                     ),
                     TableRow(
                         children: [
                           TableCell(
-                            child: Text("姓名"),
+                            verticalAlignment: TableCellVerticalAlignment.middle,
+                            child: Text("余额：",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(fontWeight: FontWeight.bold)
+                            ),
                           ),
                           TableCell(
-                            child: Text("姓名"),
+                            verticalAlignment: TableCellVerticalAlignment.middle,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                    width: 80,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.all(10),
+                                      ),
+                                    )
+                                ),
+                                Text("—"),
+                                Container(
+                                    width: 80,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.all(10),
+                                      ),
+                                    )
+                                )
+                              ],
+                            ),
                           ),
                           TableCell(
-                            child: Text("姓名"),
+                            verticalAlignment: TableCellVerticalAlignment.middle,
+                            child: Text("积分：",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(fontWeight: FontWeight.bold)
+                            ),
                           ),
                           TableCell(
+                            verticalAlignment: TableCellVerticalAlignment.middle,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                    width: 80,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.all(10),
+                                      ),
+                                    )
+                                ),
+                                Text("—"),
+                                Container(
+                                    width: 80,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.all(10),
+                                      ),
+                                    )
+                                )
+                              ],
+                            ),
+                          ),
+                          TableCell(
+                            verticalAlignment: TableCellVerticalAlignment.middle,
+                            child: Text("姓名",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(fontWeight: FontWeight.bold)
+                            ),
+                          ),
+                          TableCell(
+                            verticalAlignment: TableCellVerticalAlignment.middle,
                             child: Text("姓名"),
-                          )
+                          ),
                         ]
-                    ),
-                    TableRow(
-                      children: [
-                        TableCell(
-                          child: Text("姓名"),
-                        ),
-                        TableCell(
-                          child: Text("姓名"),
-                        ),
-                        TableCell(
-                          child: Text("姓名"),
-                        ),
-                        TableCell(
-                          child: Text("姓名"),
-                        )
-                      ]
                     )
                   ],
                 ),

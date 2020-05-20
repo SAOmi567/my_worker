@@ -19,11 +19,32 @@ class _CustomerPageState extends State<CustomerPage> {
     _result.add(DataRow(
       cells: [
         DataCell(Text("周杰伦")),
-        DataCell(Text("HYK1232355534")),
+        DataCell(
+            Row(
+              children: <Widget>[
+                Icon(Icons.credit_card),
+                Text("HYK1232355534")
+              ],
+            )
+        ),
         DataCell(Text("SSS")),
         DataCell(Text("100.0")),
         DataCell(Text("1000")),
-        DataCell(Text("tb242343223")),
+        DataCell(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.adb),
+                    onPressed: (){},
+                  )
+                ],
+              )
+            ],
+          )
+        ),
         DataCell(Text("2020-03-11 12:23:40")),
         DataCell(PopupMenuButton<String>(
           onSelected: (String val) {
@@ -47,6 +68,7 @@ class _CustomerPageState extends State<CustomerPage> {
           CustomerSearchBar(),
           Container(
             child: DataTable(
+              dataRowHeight: 65,
               columns: [
                 DataColumn(
                     label: Text("姓名")
