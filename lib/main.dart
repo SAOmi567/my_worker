@@ -3,10 +3,22 @@ import 'package:flutter/services.dart';
 import 'package:my_worker/pages/CustomerDetailPage.dart';
 import 'package:my_worker/pages/LoginPage.dart';
 import 'package:my_worker/pages/MainPage.dart';
+import 'package:provider/provider.dart';
+
+import 'models/login_user_model.dart';
 
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => LoginUserModel()
+        )
+      ],
+      child: MyApp(),
+    )
+  );
   SystemChrome.setEnabledSystemUIOverlays([]); // 隐藏系统状态栏（全屏）
 }
 
