@@ -1,0 +1,16 @@
+{
+  "id": 0,
+  "crmId": 0,
+  "name": "name",
+  "sex": true,
+  "birthDate": "",
+  "cardNumber": "",
+  "level": 0,
+  "balance": 0.0,
+  "totalConsumption": 0.0,
+  "memberPoint": 0,
+  "mobileNumber": "",
+  "createTime": "",
+  "createStoreId": 0,
+  "creatorId": 0
+}

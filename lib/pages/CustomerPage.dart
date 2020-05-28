@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_worker/coms/searchBar/CustomerSearchBar.dart';
+import 'package:my_worker/models/Customer.dart';
 
 class CustomerPage extends StatefulWidget{
   @override
@@ -103,4 +104,56 @@ class _CustomerPageState extends State<CustomerPage> {
     );
   }
 
+  List<DataRow> genDataRowFromCustomer(List<Customer> customers) {
+    List<DataRow> ret = [];
+    customers.forEach((element) {
+      DataRow dr = DataRow(
+          cells: [
+            DataCell(Text("周杰伦")),
+            DataCell(
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.credit_card),
+                    Text("HYK1232355534")
+                  ],
+                )
+            ),
+            DataCell(Text("SSS")),
+            DataCell(Text("100.0")),
+            DataCell(Text("1000")),
+            DataCell(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.adb),
+                          onPressed: (){},
+                        )
+                      ],
+                    )
+                  ],
+                )
+            ),
+            DataCell(Text("2020-03-11 12:23:40")),
+            DataCell(PopupMenuButton<String>(
+              onSelected: (String val) {
+                Navigator.of(context).pushNamed("routes/customerDetail");
+              },
+              itemBuilder: (context) {
+                return <PopupMenuEntry<String>>[
+                  PopupMenuItem<String>(
+                    value: "detail",
+                    child: Text("详情"),
+                  )
+                ];
+              },
+            )),
+          ]
+      );
+      ret.add(dr);
+    });
+    return ret;
+  }
 }

@@ -7,7 +7,8 @@ class Server {
   Options _options;
   static Dio dio  = new Dio(
     BaseOptions(
-      baseUrl: "http://www.micang8.com:8080/mc8_server archive"
+      baseUrl: "http://192.168.1.102:8080"
+      //baseUrl: "http://www.micang8.com:8080/mc8_server archive"
     )
   );
 
@@ -20,16 +21,16 @@ class Server {
   }
 
   // 登入
-  Future<User> login(String account, String pwd) async {
-    Response r = await dio.get(
-      "",
-      queryParameters: {
-        "account": account,
+  Future<User> login(String userName, String pwd) async {
+    Response r = await dio.post(
+      "/system/login2",
+      data: {
+        "username": userName,
         "password": pwd
       },
       options: _options
     );
-    print(r.data);
-    return User.fromJson(r.data);
+    print(r.data is String);
+    //return User.fromJson(r.data);
   }
 }

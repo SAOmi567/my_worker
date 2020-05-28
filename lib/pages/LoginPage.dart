@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_worker/common/Server.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -54,7 +55,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text("登录"),
                     color: Colors.orange,
                     onPressed: (){
-                      Navigator.of(context).pushNamedAndRemoveUntil("routes/main", ModalRoute.withName("/"));
+                      Server(context).login("admin", "wdl131415");
+                      //Navigator.of(context).pushNamedAndRemoveUntil("routes/main", ModalRoute.withName("/"));
                     },
                   )
                 ],
