@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:my_worker/common/Server.dart';
+import 'package:my_worker/models/User.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -54,10 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                   RaisedButton(
                     child: Text("登录"),
                     color: Colors.orange,
-                    onPressed: (){
-                      Server(context).login("admin", "wdl131415");
-                      //Navigator.of(context).pushNamedAndRemoveUntil("routes/main", ModalRoute.withName("/"));
-                    },
+                    onPressed: _onLogin,
                   )
                 ],
               ),
@@ -67,4 +66,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  void _onLogin() async {
+    EasyLoading.instance.maskType = EasyLoadingMaskType.black;
+    EasyLoading.show(status: "登录中...");
+    User user;
+    try {
+      user = await Server(context).login("admin", "wdl131415");
+    }
+    catch(e) {
+
+    }
+    finally {
+      EasyLoading.dismiss();
+    }
+    //Navigator.of(context).pushNamedAndRemoveUntil("routes/main", ModalRoute.withName("/"));
+  }
 }

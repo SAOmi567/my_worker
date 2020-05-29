@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_worker/models/User.dart';
@@ -30,7 +32,7 @@ class Server {
       },
       options: _options
     );
-    print(r.data is String);
-    //return User.fromJson(r.data);
+    Map<String, dynamic> json = jsonDecode(r.data);
+    return User.fromJson(json["map"]["user"]);
   }
 }

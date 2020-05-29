@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_worker/models/login_user_model.dart';
+import 'file:///E:/project/flutter/my_worker/lib/states/UserState.dart';
 import 'package:provider/provider.dart';
 
 class CustomerDetailPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class _CustomerDetailPageState extends State<CustomerDetailPage> {
     // TODO: implement build
 
     return Scaffold(
-      body: Consumer<LoginUserModel>(
+      body: Consumer<UserState>(
         builder: (context, loginUser, child) {
           return Text("是否登录：${loginUser.isLogin}");
         }

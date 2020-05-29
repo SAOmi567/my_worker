@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class LoginUserModel extends ChangeNotifier {
+class UserState extends ChangeNotifier {
   final bool _isLogin = false;
 
   bool get isLogin {
