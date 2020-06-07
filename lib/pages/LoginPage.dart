@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:my_worker/common/Server.dart';
 import 'package:my_worker/models/User.dart';
+import 'package:my_worker/states/UserState.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -72,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
     User user;
     try {
       user = await Server(context).login("admin", "wdl131415");
+      Provider.of<UserState>(context, listen: false).setUser(user);
     }
     catch(e) {
 
@@ -79,6 +82,8 @@ class _LoginPageState extends State<LoginPage> {
     finally {
       EasyLoading.dismiss();
     }
-    //Navigator.of(context).pushNamedAndRemoveUntil("routes/main", ModalRoute.withName("/"));
+    if (user != null) {
+      Navigator.of(context).pushNamedAndRemoveUntil("routes/main", ModalRoute.withName("/"));
+    }
   }
 }

@@ -21,7 +21,8 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) {
     ..mobileNumber = json['mobileNumber'] as String
     ..createTime = json['createTime'] as String
     ..createStoreId = json['createStoreId'] as int
-    ..creatorId = json['creatorId'] as int;
+    ..creatorId = json['creatorId'] as int
+    ..taobaoId = json['taobaoId'] as String;
 }
 
 Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
@@ -39,4 +40,5 @@ Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
       'createTime': instance.createTime,
       'createStoreId': instance.createStoreId,
       'creatorId': instance.creatorId,
+      'taobaoId': instance.taobaoId,
     };

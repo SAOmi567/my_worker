@@ -35,9 +35,28 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: LoginPage(),
-        routes: <String, WidgetBuilder> {
-          "routes/main":(_) => new MainPage(),
-          "routes/customerDetail": (_) => new CustomerDetailPage()
+        onGenerateRoute: (setting) {
+          if (setting.name == "routes/main") {
+            return MaterialPageRoute(
+                builder: (context) {
+                  return MainPage();
+                }
+            );
+          }
+          else if (setting.name == "routes/customerDetail") {
+            return MaterialPageRoute(
+              builder: (context) {
+                return new CustomerDetailPage(setting.arguments);
+              }
+            );
+          }
+          else {
+            return MaterialPageRoute(
+              builder: (context) {
+                return Text("kkk");
+              }
+            );
+          }
         },
       ),
     );

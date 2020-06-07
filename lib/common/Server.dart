@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:my_worker/models/Customer.dart';
 import 'package:my_worker/models/User.dart';
 
 class Server {
@@ -34,5 +35,30 @@ class Server {
     );
     Map<String, dynamic> json = jsonDecode(r.data);
     return User.fromJson(json["map"]["user"]);
+  }
+
+  Future<List<Customer>> searchCustomerByPlatformId(int crmId, int platformType, String platformId) async {
+    Response r = await dio.post(
+      "/customer/searchCustomerByPlatformId",
+      data: {
+        "crmId": crmId,
+        "platformType": platformType,
+        "platformId": platformId
+      },
+      options: _options
+    );
+    Map<String, dynamic> json = jsonDecode(r.data);
+    return json["map"]["result"].map<Customer>((e) => Customer.fromJson(e)).toList();
+  }
+  Future<Customer> getCustomerDetail(int customerId) async {
+    Response r = await dio.post(
+      "/customer/getCustomerDetail",
+      data: {
+        "customerId": customerId
+      },
+      options: _options
+    );
+    Map<String, dynamic> json = jsonDecode(r.data);
+    return Customer.fromJson(json["map"]["result"]);
   }
 }

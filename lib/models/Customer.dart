@@ -21,6 +21,7 @@ class Customer {
   String createTime;
   int createStoreId;
   int creatorId;
+  String taobaoId;
 
   factory Customer.fromJson(Map<String,dynamic> json) => _$CustomerFromJson(json);
   Map<String, dynamic> toJson() => _$CustomerToJson(this);

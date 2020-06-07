@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class CustomerSearchBar extends StatefulWidget {
+  final Function onSearch1Func;
+
+  CustomerSearchBar({this.onSearch1Func});
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -11,7 +16,11 @@ class CustomerSearchBar extends StatefulWidget {
 }
 
 class _CustomerSearchBarState extends State<CustomerSearchBar> {
-  bool _isSuper = false;
+  int _mode = 0;
+  //
+  int _platformType = 0;
+  String _platformId = "";
+  //
   String _level = "全部";
 
   @override
@@ -22,44 +31,62 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
         children: <Widget>[
           // 顶条
           Container(
+            color: Colors.black12,
             padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            color: Colors.grey,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Container(
-                      width: 500,
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20))
-                            ),
-                          icon: Icon(
-                            Icons.search,
-                            color: Colors.white
-                          ),
-                          hintText: "请输入手机号",
-                          isDense: true,
-                          contentPadding: EdgeInsets.all(10),
-                          filled: true,
-                          fillColor: Colors.white
-                        ),
+                Offstage(
+                  offstage: _mode != 0,
+                  child: Row(
+                    children: <Widget>[
+                      DropdownButton(
+                        value: _platformType,
+                        items: [
+                          DropdownMenuItem(child: Text("所有平台"), value: 0),
+                          DropdownMenuItem(child: Text("淘宝"), value: 1),
+                          DropdownMenuItem(child: Text("拼多多"), value: 2)
+                        ],
+                        onChanged: (val) {
+                          setState(() {
+                            _platformType = val;
+                          });
+                        },
                       ),
-                    )
-                  ],
+                      Container(
+                        width: 200,
+                        child: TextField(
+                          autofocus: true,
+                          onChanged: (val) {
+                            _platformId = val;
+                          },
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(15))
+                              ),
+                              hintText: "平台账号ID",
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(10),
+                              filled: true,
+                              fillColor: Colors.white
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Text("更多"),
-                    Switch(
-                      value: _isSuper,
-                      onChanged: (val)  {
+                    DropdownButton(
+                      value: _mode,
+                      items: [
+                        DropdownMenuItem(child: Text("线上模式"), value: 0),
+                        DropdownMenuItem(child: Text("线下模式"), value: 1)
+                      ],
+                      onChanged: (val) {
                         setState(() {
-                          _isSuper = val;
+                          _mode = val;
                         });
                       },
                     ),
@@ -69,9 +96,9 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
                       child: Text("重置"),
                     ),
                     RaisedButton(
-                      onPressed: () {
-                      },
-                      child: Text("查询"),
+                      onPressed: _onSearch,
+                      child: Text("查询", style: TextStyle(color: Colors.white),),
+                      color: Colors.pinkAccent,
                     ),
                   ],
                 )
@@ -80,7 +107,7 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
           ),
           // 超级查询
           Offstage(
-            offstage: !_isSuper,
+            offstage: _mode != 1,
             child: SizedBox(
               height: 200,
               child: Card(
@@ -256,4 +283,13 @@ class _CustomerSearchBarState extends State<CustomerSearchBar> {
     );
   }
 
+  void _onSearch() {
+    FocusScope.of(context).requestFocus(FocusNode());
+    if (_mode == 0) {
+      widget.onSearch1Func({
+        "platformType": _platformType,
+        "platformId": _platformId
+      });
+    }
+  }
 }
